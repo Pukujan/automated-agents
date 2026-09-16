@@ -24,9 +24,49 @@ Status: implementation proposal grounded in the user's stated requirements. This
 | Strategy | Audience/campaign proposals, alternatives, experiment criteria | Declaring its own hypothesis proven or granting publication authority |
 | Controller | Budgets, pacing, checkpoints, pause/resume | Deciding what is true |
 
+For a career-targeted run, the decision path is deliberately small:
+
+```text
+target researcher -> evidence packet -> hiring-manager judge
+                                      -> career coach
+                                      -> strategy proposal -> owner decision
+```
+
+The hiring manager owns the fit assessment. The career coach owns the evidence and relationship plan. The strategy agent owns the recommended campaign or job-search direction. None of these roles owns external action. A subagent invocation is a fresh, scoped case packet—not a shared conversational memory—so each result can be independently stored, inspected, rejected, or rerun.
+
+### Agent result envelope
+
+Every role returns a small versioned envelope before any role-specific fields:
+
+```yaml
+case_id: case_unity_20260916
+run_id: run_...
+agent: hiring_manager
+agent_version: 0.1
+prompt_version: 0.1
+schema_version: 0.1
+status: complete
+input_refs: [artifact_...]
+output_refs: []
+findings: []
+missing_data: []
+recommendations: []
+open_questions: []
+prohibited_actions: []
+confidence: low
+```
+
+The controller saves the complete response as an immutable research/assessment artifact and emits a proposal event that points to it. SQLite can hold pending runs, frontier items, retries, and pause state; FOSSIL holds the durable evidence, agent assessments, hypotheses, and approved/rejected decisions. The public repository holds only the generic contracts and prompts.
+
+### First Unity career slice
+
+Begin with one company and one or two live role snapshots, not a company-wide crawl. The initial Unity fit hypothesis is the Senior Backend Engineer, AI Platform & Infrastructure role because its official description overlaps the owner's current AI-systems themes; it remains unproven until seniority, production-scale, cloud, and eligibility evidence are collected. Compare it with Staff Software Engineer, Gaming AI only if the first evidence packet leaves the fit ambiguous.
+
+The first useful run should produce four inspectable outputs: (1) official role evidence, (2) a strict requirement scorecard, (3) a prioritized seven-day coaching plan, and (4) a strategy proposal with explicit assumptions and a review date. Stop there. Do not build networking automation or application automation until the owner has reviewed the assessment and approved the next research question.
+
 ## Exploration model
 
-Use a priority queue of discovered destinations. Each entry has a reference, discovered-from reference, reason to visit, depth, status, and last-capture time. The research agent ranks candidates in batches with relevance, novelty, evidence gaps, perspective diversity, and navigation cost.
+Use a priority queue of discovered destinations. Each entry has a reference, discovered-from reference, reason to visit, depth, status, and last-capture time. The research agent ranks candidates in batches with explicit reasons, considering novelty, competing explanations, and collection cost.
 
 Discover only observed links and relationships. Keep inferred links and topic labels separately marked as model annotations. Company-to-company jumps require a visible connection or an explicit new search. Exploration graphs can contain cycles; deduplication and revisit windows govern browsing.
 
@@ -81,4 +121,4 @@ Luna is a candidate for bounded exploration, candidate selection, and navigation
 
 ## Current unknowns
 
-A manual supervised Brave observation has now verified the profile -> post -> post analytics -> content analytics -> visible commenter profile path. No automated crawler, recurring schedule, analytics export, or campaign experiment has run. The next seed (target company, job, connection-list filter, or topic search), browser bridge, profile inputs, unattended execution, and backup destination remain open. No strategy, brand positioning, paid outreach service, Beads installation, graph database, or orchestration framework has been selected.
+A manual supervised Brave observation has now verified the profile -> post -> post analytics -> content analytics -> older post -> visible commenter profile path. No automated crawler, recurring schedule, analytics export, or campaign experiment has run. The next seed (target company, job, connection-list filter, or topic search), browser bridge, profile inputs, unattended execution, and backup destination remain open. No strategy, brand positioning, paid outreach service, Beads installation, graph database, or orchestration framework has been selected.
