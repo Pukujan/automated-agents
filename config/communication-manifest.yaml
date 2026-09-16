@@ -14,6 +14,18 @@ modules:
     receives: [research_question, selected_evidence, open_hypotheses]
     returns: [ranked_candidates, findings, evidence_refs, uncertainty, questions]
     may_not: [change_brand, approve_execution, treat_sample_as_population]
+  hiring_manager:
+    owns: role_fit_assessment
+    instructions: ../modules/hiring-manager/instructions.md
+    receives: [target_role_snapshot, profile_evidence, research_findings, owner_constraints]
+    returns: [requirement_scorecard, fit_recommendation, evidence_gaps, interview_questions, uncertainty]
+    may_not: [apply, contact, connect, publish, change_profile, authorize_execution]
+  career_coach:
+    owns: evidence_and_relationship_plan
+    instructions: ../modules/career-coach/instructions.md
+    receives: [target_role_snapshot, hiring_manager_assessment, research_findings, approved_profile]
+    returns: [prioritized_gaps, proof_tasks, targeted_research_plan, relationship_map, draft_messages, review_date]
+    may_not: [invent_claims, contact, connect, apply, publish, change_profile]
   brand:
     owns: brand_proposal
     instructions: ../modules/brand/instructions.md
@@ -45,5 +57,5 @@ modules:
     may_not: [silently_rewrite_draft, approve_publication, change_profile]
     next: user
 handoff_fields: [owner, input_refs, input_versions, output_refs, status, open_questions]
-controller_owns: [tool_scopes, pacing, budgets, checkpoints, pause_resume]
+controller_owns: [tool_scopes, pacing, budgets, checkpoints, pause_resume, case_packets, result_persistence]
 durable_save_is_not: [evidence_of_truth, execution_approval, profile_adoption]
