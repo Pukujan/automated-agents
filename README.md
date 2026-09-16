@@ -1,9 +1,11 @@
 # Automated Agents
 
-A small, supervised workflow for evidence-backed personal-brand campaigns.
+A personal-brand and career research system, built in usable slices.
 
-Start with the [first slice](docs/first-slice.md): one real project becomes a campaign brief, one reviewed post, then two more drafts. Build automation only after manual campaigns expose a real need.
+Agents investigate, propose positioning, and recommend campaigns. Every strategy is a proposal: storing it, deciding to test it, and finding evidence for it are separate events.
 
-The system never publishes, changes a profile, or treats generated material as permanent memory without explicit user approval.
+Start with the [durable plan](docs/PLAN.md), then the [first slice](docs/first-slice.md) and [current handoff](docs/handoff.md).
 
-Personal profiles, source material, credentials, databases, run logs, and drafts stay outside this public repository.
+Current state: versioned design and agent instructions. The browser crawler, live viewer, scheduled runs, and production FOSSIL adapter are not implemented. Existing JSON contracts are early drafts, not enforced runtime boundaries.
+
+Source code, prompts, and generic policy belong here. Personal evidence and proposals belong in a private FOSSIL pack. Operational queues/checkpoints stay local. See the [storage boundary](docs/storage.md).

@@ -1,12 +1,35 @@
-version: 1
-workflow: supervised-campaign
+version: 2
+workflow: research-to-strategy-proposal
+status: design_only
 policy: ../policy.md
-
 modules:
+  collector:
+    owns: observations_and_coverage
+    receives: [research_brief, visit_queue, controller_budgets]
+    returns: [capture_batch, discovered_candidates, checkpoint, limitations]
+    may_not: [change_budgets, infer_facts, publish, message, change_profile]
+  research:
+    owns: research_findings
+    instructions: ../modules/research/instructions.md
+    receives: [research_question, selected_evidence, open_hypotheses]
+    returns: [ranked_candidates, findings, evidence_refs, uncertainty, questions]
+    may_not: [change_brand, approve_execution, treat_sample_as_population]
+  brand:
+    owns: brand_proposal
+    instructions: ../modules/brand/instructions.md
+    receives: [approved_profile, findings, voice_examples, user_feedback]
+    returns: [positioning_alternatives, voice_proposal, evidence_refs, gaps]
+    may_not: [invent_identity, silently_adopt_profile_changes, publish]
+  strategy:
+    owns: strategy_proposal
+    instructions: ../modules/strategy/instructions.md
+    receives: [goals, brand_proposals, findings, outcome_history]
+    returns: [recommendation, alternatives, assumptions, experiment, review_trigger]
+    may_not: [declare_own_hypothesis_proven, grant_publication_authority]
   planner:
     owns: campaign_brief
-    receives: [profile_excerpt, project_evidence, campaign_request]
-    returns: [campaign_brief, needs_user_input, blocked]
+    receives: [selected_strategy_revision, profile_excerpt, selected_evidence]
+    returns: [campaign_brief, questions]
     may_not: [write_posts, change_profile, publish]
     next: writer
   writer:
@@ -21,5 +44,6 @@ modules:
     returns: [review_findings, needs_user_input, blocked]
     may_not: [silently_rewrite_draft, approve_publication, change_profile]
     next: user
-
-user_approval_required_for: [publication, profile_change, unsupported_personal_claim]
+handoff_fields: [owner, input_refs, input_versions, output_refs, status, open_questions]
+controller_owns: [tool_scopes, pacing, budgets, checkpoints, pause_resume]
+durable_save_is_not: [evidence_of_truth, execution_approval, profile_adoption]

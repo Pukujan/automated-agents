@@ -1,36 +1,27 @@
-# First slice: supervised campaign
+# First slice: bounded research exploration
 
-## Outcome
+This supersedes the initial content-first milestone.
 
-For one real project, produce a campaign brief, one reviewed post, then two more drafts using the accepted direction. You can trace every personal claim and decide whether each draft represents you.
+## Deliverable
 
-## Deliberately manual
+For one explicit research question, use a local logged-in browser to explore a bounded set of relevant posts, comments, profiles, and companies. Produce a structured capture batch, readable evidence brief, and provisional strategy recommendation.
 
-Prompt execution, handoffs, review, and saving decisions are manual. This is an operating rehearsal; the documents describe boundaries that a future runner will enforce.
+## Steps
 
-## Flow
+1. Inspect the available browser bridge and session; select a research question and seeds.
+2. Set page/time/depth/comment-expansion budgets and a writable private destination.
+3. Explore visibly; extract actual page observations incrementally and checkpoint after each page.
+4. Generate a report with provenance, discovered relationships, missing data, and coverage limits.
+5. Preserve evidence and a proposal through the FOSSIL adapter; read back saved references.
+6. Use observed navigation to implement only repeatable operations for the next run.
 
-```text
-profile + project evidence
-          |
-       planner
-          |
-  campaign brief [you accept direction]
-          |
-       writer
-          |
-       editor
-          |
-you accept / edit / reject --> handoff record
-```
+## Done means
 
-## Acceptance criteria
+- A real observed path such as search -> post -> commenter -> company is recorded, if accessible links make it relevant; do not fabricate a path to meet the example.
+- A small sample of captured text/counts is checked against the browser.
+- Partial capture, missing values, and model annotations remain explicit.
+- Pausing/stopping preserves collected data and the next destination.
+- The proposal cites saved evidence and records what could change it.
+- No publication, outreach, or brand-profile adoption is implied.
 
-- The campaign has one audience, one objective, three distinct post briefs, and a proposed cadence.
-- Each draft identifies its evidence and labels questions rather than inventing personal facts.
-- The editor identifies concrete voice or evidence concerns with a suggested fix.
-- The decision and material edits are recorded with the revisions used.
-
-## Add code only when earned
-
-Build a runner after two or three manual campaigns, when copying context packages or recording revisions begins to cause mistakes. Add a SQLite store when run history or a review queue becomes hard to inspect as files. Add scheduling when the manual workflow is stable and recurring.
+Browser implementation and scheduling remain unfinished. Track development in GitHub issue #1.

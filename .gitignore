@@ -1,4 +1,7 @@
 profiles/private/
+private/
+captures/
+.fossil/
 runs/
 data/
 *.db
