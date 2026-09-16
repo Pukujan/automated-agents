@@ -1,0 +1,12 @@
+profiles/private/
+runs/
+data/
+*.db
+*.sqlite
+*.sqlite3
+.env
+.venv/
+__pycache__/
+.DS_Store
+.vscode/
+.idea/
