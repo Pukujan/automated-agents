@@ -1,0 +1,25 @@
+version: 1
+workflow: supervised-campaign
+policy: ../policy.md
+
+modules:
+  planner:
+    owns: campaign_brief
+    receives: [profile_excerpt, project_evidence, campaign_request]
+    returns: [campaign_brief, needs_user_input, blocked]
+    may_not: [write_posts, change_profile, publish]
+    next: writer
+  writer:
+    owns: post_draft
+    receives: [profile_excerpt, campaign_brief, selected_evidence]
+    returns: [post_draft, needs_user_input, blocked]
+    may_not: [change_campaign_strategy, change_profile, publish]
+    next: editor
+  editor:
+    owns: review_findings
+    receives: [profile_excerpt, campaign_brief, post_draft, approved_voice_examples]
+    returns: [review_findings, needs_user_input, blocked]
+    may_not: [silently_rewrite_draft, approve_publication, change_profile]
+    next: user
+
+user_approval_required_for: [publication, profile_change, unsupported_personal_claim]
