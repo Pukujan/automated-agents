@@ -4,11 +4,11 @@
 
 The content-first baseline has been superseded by docs/PLAN.md and the research-first milestone. Research, brand, and strategy own separate proposed artifacts. Local browser exploration and incremental collection are the intended first operational slice.
 
-This repository contains design documents and instructions, not running agents or browser automation. No live crawl, analytics baseline, or campaign has been performed.
+A partial manual supervised run has now completed in the owner's logged-in Brave session. It verified the path profile -> own post -> post analytics -> content analytics -> older post -> visible commenter profile. The repository still contains design documents and instructions, not a running crawler or browser automation.
 
 ## Next task
 
-Use issue #1. Inspect the local browser interface, choose one explicit question and seed set, and run a bounded visible collection. Verify saved observations before deriving reusable navigation/extraction routines. Keep the first output useful: evidence plus findings and a provisional strategy.
+Use issue #1. Choose the next seed set: a target company/job, a connection-list filter, or a topic search. Continue the same bounded visible collection, verify saved observations, and then derive reusable navigation/extraction routines. Keep the first output useful: evidence plus findings and a provisional strategy.
 
 ## Durability
 
